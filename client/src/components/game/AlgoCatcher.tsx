@@ -27,7 +27,7 @@ export function AlgoCatcher({ onGameOver, isPlaying }: AlgoCatcherProps) {
     // Game State
     let animationFrameId: number;
     let score = 0;
-    let lives = 3;
+    let lives = 5;
     let frames = 0;
     let spawnRate = 90; // Frames between spawns
     
@@ -85,56 +85,51 @@ export function AlgoCatcher({ onGameOver, isPlaying }: AlgoCatcherProps) {
 
     // Drawing Functions
     const drawBackground = () => {
-      const gradient = ctx.createLinearGradient(0, 0, 0, CANVAS_HEIGHT);
-      gradient.addColorStop(0, "#F8FAFC"); // Light top
-      gradient.addColorStop(1, "#E2E8F0"); // Slightly darker bottom
-      ctx.fillStyle = gradient;
+      ctx.fillStyle = "#FFFFFF"; // Pure white
       ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+      
+      // Subtle grid for B/W theme
+      ctx.strokeStyle = "#F0F0F0";
+      ctx.lineWidth = 1;
+      for (let x = 0; x < CANVAS_WIDTH; x += 50) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, CANVAS_HEIGHT);
+        ctx.stroke();
+      }
+      for (let y = 0; y < CANVAS_HEIGHT; y += 50) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(CANVAS_WIDTH, y);
+        ctx.stroke();
+      }
     };
     
     const drawBasket = () => {
-      ctx.fillStyle = "#38BDF8"; // Primary cyan
-      ctx.shadowColor = "rgba(56, 189, 248, 0.4)";
-      ctx.shadowBlur = 10;
-      ctx.shadowOffsetY = 4;
+      ctx.fillStyle = "#000000"; // Black basket
+      ctx.strokeStyle = "#000000";
+      ctx.lineWidth = 2;
       
-      // Rounded rectangle
+      // Sharp rectangle for B/W theme
       const { x, y, width, height } = basket;
-      const radius = 10;
-      
-      ctx.beginPath();
-      ctx.moveTo(x + radius, y);
-      ctx.lineTo(x + width - radius, y);
-      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-      ctx.lineTo(x + width, y + height - radius);
-      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-      ctx.lineTo(x + radius, y + height);
-      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-      ctx.lineTo(x, y + radius);
-      ctx.quadraticCurveTo(x, y, x + radius, y);
-      ctx.fill();
-      ctx.closePath();
-      
-      // Reset shadow
-      ctx.shadowColor = "transparent";
-      ctx.shadowBlur = 0;
-      ctx.shadowOffsetY = 0;
+      ctx.fillRect(x, y, width, height);
+      ctx.strokeRect(x, y, width, height);
     };
     
     const drawCoins = () => {
       coins.forEach(coin => {
-        // Outer circle
+        // Outer circle - Black with white 'A'
         ctx.beginPath();
         ctx.arc(coin.x, coin.y, COIN_RADIUS, 0, Math.PI * 2);
-        ctx.fillStyle = "#FBBF24"; // Yellow
+        ctx.fillStyle = "#000000"; 
         ctx.fill();
-        ctx.lineWidth = 3;
-        ctx.strokeStyle = "#D97706"; // Darker orange ring
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "#000000";
         ctx.stroke();
         
         // Inner 'A'
-        ctx.fillStyle = "#ffffff";
-        ctx.font = "bold 22px 'Fredoka', sans-serif";
+        ctx.fillStyle = "#FFFFFF";
+        ctx.font = "bold 22px sans-serif";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillText("A", coin.x, coin.y + 2);
@@ -142,19 +137,27 @@ export function AlgoCatcher({ onGameOver, isPlaying }: AlgoCatcherProps) {
     };
     
     const drawHUD = () => {
-      ctx.fillStyle = "#1E293B"; // Dark foreground
-      ctx.font = "600 24px 'Fredoka', sans-serif";
+      ctx.fillStyle = "#000000"; 
+      ctx.font = "bold 24px sans-serif";
       ctx.textAlign = "left";
       ctx.textBaseline = "top";
-      ctx.fillText(`Score: ${score}`, 20, 20);
+      ctx.fillText(`SCORE: ${score}`, 20, 20);
       
       ctx.textAlign = "right";
       
-      // Draw heart icons for lives
-      const heartXStart = CANVAS_WIDTH - 20;
-      for (let i = 0; i < 3; i++) {
-        ctx.fillStyle = i < lives ? "#FB7185" : "#CBD5E1"; // Pink if alive, gray if lost
-        ctx.fillText("♥", heartXStart - (i * 30), 20);
+      // Draw dots for lives in B/W theme
+      const dotXStart = CANVAS_WIDTH - 20;
+      for (let i = 0; i < 5; i++) {
+        ctx.beginPath();
+        ctx.arc(dotXStart - (i * 25), 32, 8, 0, Math.PI * 2);
+        if (i < lives) {
+          ctx.fillStyle = "#000000";
+          ctx.fill();
+        } else {
+          ctx.strokeStyle = "#000000";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
       }
     };
 
@@ -241,12 +244,12 @@ export function AlgoCatcher({ onGameOver, isPlaying }: AlgoCatcherProps) {
   }, [isPlaying, onGameOver]);
 
   return (
-    <div className="relative w-full max-w-lg mx-auto aspect-[3/4] bg-white rounded-[2rem] shadow-soft overflow-hidden border border-border/50">
+    <div className="relative w-full max-w-lg mx-auto aspect-[3/4] bg-white shadow-xl overflow-hidden border-2 border-black">
       <canvas
         ref={canvasRef}
         width={CANVAS_WIDTH}
         height={CANVAS_HEIGHT}
-        className="block w-full h-full object-contain touch-none"
+        className="block w-full h-full object-contain touch-none bg-white"
         style={{ touchAction: "none" }}
       />
       

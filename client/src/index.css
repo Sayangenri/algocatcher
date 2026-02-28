@@ -9,36 +9,36 @@
     --font-display: 'Fredoka', sans-serif;
     --font-body: 'Quicksand', sans-serif;
 
-    /* Playful Minimal Palette */
-    --background: 40 33% 98%;      /* Soft warm cream */
-    --foreground: 220 40% 20%;     /* Deep friendly blue-gray */
+    /* Black and White Theme */
+    --background: 0 0% 100%;      /* White */
+    --foreground: 0 0% 0%;        /* Black */
     
     --card: 0 0% 100%;
-    --card-foreground: 220 40% 20%;
+    --card-foreground: 0 0% 0%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 220 40% 20%;
+    --popover-foreground: 0 0% 0%;
     
-    --primary: 195 85% 55%;        /* Vibrant friendly cyan/blue */
+    --primary: 0 0% 0%;           /* Black */
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 45 95% 55%;       /* ALGO yellow/gold */
-    --secondary-foreground: 25 80% 20%;
+    --secondary: 0 0% 96%;        /* Very light gray */
+    --secondary-foreground: 0 0% 0%;
     
-    --muted: 210 20% 94%;
-    --muted-foreground: 220 15% 45%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
     
-    --accent: 345 80% 65%;         /* Soft pink/coral accent */
-    --accent-foreground: 0 0% 100%;
+    --accent: 0 0% 90%;           /* Light gray */
+    --accent-foreground: 0 0% 0%;
     
-    --destructive: 0 84% 60%;
+    --destructive: 0 0% 0%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 90%;
-    --input: 210 20% 90%;
-    --ring: 195 85% 55%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 0%;
 
-    --radius: 1.5rem;
+    --radius: 0.5rem;             /* Sharper radius for B/W theme */
   }
 
   body {
