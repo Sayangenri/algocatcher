@@ -2,14 +2,15 @@ import { pgTable, text, serial, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const scores = pgTable("scores", {
+export const scores = pgTable("algoscores", {
   id: serial("id").primaryKey(),
-  playerName: text("player_name").notNull(),
-  score: integer("score").notNull(),
+  wallet: text("wallet").notNull().unique(),
+  score: integer("score").notNull().default(0),
 });
 
+// ✅ Insert schema must match table
 export const insertScoreSchema = createInsertSchema(scores).pick({
-  playerName: true,
+  wallet: true,
   score: true,
 });
 
