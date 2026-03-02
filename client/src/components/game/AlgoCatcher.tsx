@@ -124,7 +124,7 @@ useEffect(() => {
 
       // "ALGO" label on basket
       ctx.fillStyle = "#FFFFFF";
-      ctx.font = "bold 11px 'Fredoka', sans-serif";
+      ctx.font = "bold 12px 'Bungee', cursive";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText("ALGO", x + width / 2, y + height / 2 + 1);
@@ -160,27 +160,28 @@ const drawCoin = (coin: { x: number; y: number }) => {
     const drawHUD = () => {
       // Score (left)
       ctx.fillStyle = "#000000";
-      ctx.font = "bold 22px 'Fredoka', sans-serif";
+      ctx.font = "bold 24px 'Bungee', cursive";
       ctx.textAlign = "left";
       ctx.textBaseline = "top";
-      ctx.fillText(`${score}`, 60, 20);
+      ctx.fillText(`${score}`, 20, 15);
 
-      ctx.font = "12px 'Quicksand', sans-serif";
+      ctx.font = "11px 'Orbitron', sans-serif";
       ctx.fillStyle = "#888888";
-      ctx.fillText("SCORE", 60, 46);
+      ctx.textAlign = "left";
+      ctx.fillText("SCORE", 20, 42);
 
       // Lives (right) — filled / empty dots
-      const dotR = 7;
+      const dotR = 8;
       const dotStart = CANVAS_WIDTH - 20;
       ctx.textAlign = "right";
-      ctx.font = "12px 'Quicksand', sans-serif";
+      ctx.font = "11px 'Orbitron', sans-serif";
       ctx.fillStyle = "#888888";
-      ctx.fillText("LIVES", dotStart - (2 * 22), 46);
+      ctx.fillText("LIVES", dotStart - (2 * 24), 42);
 
       for (let i = 0; i < 3; i++) {
-        const dx = dotStart - i * 22;
+        const dx = dotStart - i * 24;
         ctx.beginPath();
-        ctx.arc(dx, 30, dotR, 0, Math.PI * 2);
+        ctx.arc(dx, 28, dotR, 0, Math.PI * 2);
         if (i < lives) {
           ctx.fillStyle = "#000000";
           ctx.fill();
@@ -274,17 +275,14 @@ const drawCoin = (coin: { x: number; y: number }) => {
   }, [isPlaying, onGameOver]);
 
   return (
-    <div className="relative w-full max-w-lg mx-auto aspect-[3/4] bg-white overflow-hidden border-2 border-black shadow-[6px_6px_0px_0px_#000]">
+    <div className="relative w-full h-full bg-white overflow-hidden border-2 border-black shadow-[6px_6px_0px_0px_#000] rounded-lg flex items-center justify-center" style={{ aspectRatio: '3/4', maxHeight: '100%' }}>
       <canvas
         ref={canvasRef}
         width={CANVAS_WIDTH}
         height={CANVAS_HEIGHT}
         className="block w-full h-full object-contain touch-none bg-white"
-        style={{ touchAction: "none" }}
+        style={{ touchAction: "none", maxHeight: '100%' }}
       />
-      {!isPlaying && (
-        <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px] flex items-center justify-center" />
-      )}
     </div>
   );
 }

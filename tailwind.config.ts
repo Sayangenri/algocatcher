@@ -88,6 +88,8 @@ export default {
         mono: ["var(--font-mono)"],
         display: ["var(--font-display)"],
         body: ["var(--font-body)"],
+        pixel: ["var(--font-pixel)"],
+        game: ["var(--font-display)"],
       },
       keyframes: {
         "accordion-down": {

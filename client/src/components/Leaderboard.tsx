@@ -10,7 +10,11 @@ const rankStyles = [
   { bg: "bg-black/40 text-white", row: "" },
 ];
 
-export function Leaderboard() {
+interface LeaderboardProps {
+  currentWallet?: string | null;
+}
+
+export function Leaderboard({ currentWallet }: LeaderboardProps) {
   const { data: scores, isLoading, isError } = useScores();
 
   if (isLoading) {
@@ -38,57 +42,71 @@ export function Leaderboard() {
     return (
       <div className="p-8 bg-white border-2 border-black shadow-[4px_4px_0px_0px_#000] rounded-2xl text-center">
         <Trophy className="w-10 h-10 text-black/20 mx-auto mb-3" />
-        <h3 className="text-lg font-display font-bold text-foreground mb-1">No scores yet!</h3>
+        <h3 className="text-lg font-display text-foreground mb-1 tracking-wide">No scores yet!</h3>
         <p className="text-muted-foreground text-sm">Be the first to catch some ALGO.</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_#000] rounded-2xl overflow-hidden">
+    <div className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_#000] rounded-2xl overflow-hidden h-full flex flex-col">
       {/* Header */}
-      <div className="bg-black px-5 py-4 flex items-center gap-2.5">
-        <h2 className="text-xl font-display font-bold text-white m-0">Top Catchers</h2>
-        <span className="ml-auto text-white/50 text-xs font-body">ALGO Leaderboard</span>
+      <div className="bg-black px-3 py-2 md:px-4 md:py-3 flex items-center gap-2 flex-shrink-0">
+        <h2 className="text-base md:text-lg lg:text-xl font-display text-white m-0 tracking-wide">Top Catchers</h2>
       </div>
 
       {/* List */}
-      <div className="p-3 space-y-1">
+      <div className="p-2 md:p-3 space-y-1 overflow-y-auto flex-1 min-h-0">
         {topScores.map((score, idx) => {
           const isTop3 = idx < 3;
+          const isCurrentUser = currentWallet && score.wallet.toLowerCase() === currentWallet.toLowerCase();
           const style = rankStyles[idx] ?? { bg: "bg-black/5 text-black/50", row: "" };
 
           return (
             <div
               key={score.id}
               className={`
-                flex items-center justify-between px-3 py-2.5 rounded-xl
-                transition-colors hover:bg-black/[0.03]
-                ${isTop3 ? style.row : ""}
+                flex items-center justify-between px-2 sm:px-3 py-2 sm:py-2.5 rounded-lg sm:rounded-xl
+                transition-colors
+                ${isCurrentUser ? "bg-gray-800 text-white" : "hover:bg-black/[0.03]"}
+                ${isTop3 && !isCurrentUser ? style.row : ""}
               `}
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
                 <div
                   className={`
-                    w-7 h-7 flex items-center justify-center rounded-lg font-display font-bold text-sm
-                    ${isTop3 ? style.bg : "bg-black/5 text-black/40"}
+                    w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-lg font-display font-bold text-xs sm:text-sm shrink-0
+                    ${isCurrentUser 
+                      ? "bg-white text-gray-800" 
+                      : isTop3 
+                      ? style.bg 
+                      : "bg-black/5 text-black/40"
+                    }
                   `}
                 >
                   {idx + 1}
                 </div>
                 <span
-                  className={`font-body font-semibold text-sm ${
-                    isTop3 ? "text-foreground" : "text-muted-foreground"
+                  className={`font-body font-semibold text-xs sm:text-sm truncate ${
+                    isCurrentUser 
+                      ? "text-white font-bold" 
+                      : isTop3 
+                      ? "text-foreground" 
+                      : "text-muted-foreground"
                   }`}
                 >
                   {score.wallet.slice(0, 6)}...{score.wallet.slice(-4)}
                 </span>
               </div>
-              <div className="flex items-center gap-1.5">
-                {isTop3 && <AlgorandMark size={11} color={idx === 0 ? "#000" : "#666"} />}
+              <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
+                {isTop3 && <AlgorandMark size={10} className="sm:w-[11px] sm:h-[11px]" color={isCurrentUser ? "#fff" : idx === 0 ? "#000" : "#666"} />}
                 <span
-                  className={`font-display font-bold text-base ${
-                    isTop3 ? "text-foreground" : "text-muted-foreground"
+                  className={`font-display font-bold text-sm sm:text-base ${
+                    isCurrentUser 
+                      ? "text-white" 
+                      : isTop3 
+                      ? "text-foreground" 
+                      : "text-muted-foreground"
                   }`}
                 >
                   {score.score.toLocaleString()}
