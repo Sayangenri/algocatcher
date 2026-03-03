@@ -275,13 +275,13 @@ const drawCoin = (coin: { x: number; y: number }) => {
   }, [isPlaying, onGameOver]);
 
   return (
-    <div className="relative w-full h-full bg-white overflow-hidden border-2 border-black shadow-[6px_6px_0px_0px_#000] rounded-lg flex items-center justify-center" style={{ aspectRatio: '3/4', maxHeight: '100%' }}>
+    <div className="relative w-full h-full bg-white overflow-hidden border-2 border-black shadow-[4px_4px_0px_0px_#000] sm:shadow-[6px_6px_0px_0px_#000] rounded-md xs:rounded-lg flex items-center justify-center" style={{ aspectRatio: '3/4', maxHeight: '100%' }}>
       <canvas
         ref={canvasRef}
         width={CANVAS_WIDTH}
         height={CANVAS_HEIGHT}
         className="block w-full h-full object-contain touch-none bg-white"
-        style={{ touchAction: "none", maxHeight: '100%' }}
+        style={{ touchAction: "none", maxHeight: '100%', WebkitTouchCallout: 'none', WebkitUserSelect: 'none' }}
       />
     </div>
   );

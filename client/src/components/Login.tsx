@@ -90,63 +90,63 @@ export default function Login() {
       </div>
 
       {/* Logo in top-left corner - responsive */}
-      <div className="absolute top-4 left-4 md:top-6 md:left-6 z-10 flex items-center gap-2 md:gap-3 animate-in fade-in slide-in-from-top-4 duration-700">
-        <div className="bg-black rounded-lg md:rounded-xl p-2 md:p-2.5 shadow-lg hover:scale-110 transition-transform duration-300">
-          <AlgorandMark size={20} className="md:w-6 md:h-6" color="white" />
+      <div className="absolute top-3 left-3 xs:top-4 xs:left-4 md:top-6 md:left-6 z-10 flex items-center gap-1.5 xs:gap-2 md:gap-3 animate-in fade-in slide-in-from-top-4 duration-700">
+        <div className="bg-black rounded-md xs:rounded-lg md:rounded-xl p-1.5 xs:p-2 md:p-2.5 shadow-lg hover:scale-110 transition-transform duration-300 touch-manipulation">
+          <AlgorandMark size={18} className="xs:w-5 xs:h-5 md:w-6 md:h-6" color="white" />
         </div>
-        <span className="text-white text-base md:text-xl font-display tracking-wider drop-shadow-lg">ALGO Catcher</span>
+        <span className="text-white text-sm xs:text-base md:text-xl font-display tracking-wider drop-shadow-lg hidden xs:inline">ALGO Catcher</span>
       </div>
 
       {/* Centered login card */}
-      <div className="relative z-10 min-h-screen flex items-center justify-center p-3 sm:p-4 md:p-6">
-        <div className="w-full max-w-md bg-white rounded-xl sm:rounded-xl md:rounded-2xl shadow-2xl p-5 sm:p-6 md:p-8 space-y-4 sm:space-y-5 md:space-y-6 animate-in fade-in zoom-in-95 duration-700 delay-150">
+      <div className="relative z-10 min-h-screen flex items-center justify-center p-2 xs:p-3 sm:p-4 md:p-6">
+        <div className="w-full max-w-md bg-white rounded-lg xs:rounded-xl sm:rounded-xl md:rounded-2xl shadow-2xl p-4 xs:p-5 sm:p-6 md:p-8 space-y-3 xs:space-y-4 sm:space-y-5 md:space-y-6 animate-in fade-in zoom-in-95 duration-700 delay-150 mx-2 xs:mx-3">
 
           {/* Icon at top */}
           <div className="flex justify-center animate-in fade-in slide-in-from-top-4 duration-700 delay-300">
-            <div className="bg-black rounded-lg sm:rounded-xl p-2 sm:p-3 shadow-lg hover:scale-110 hover:rotate-6 transition-all duration-300 cursor-pointer">
-              <Gamepad2 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
+            <div className="bg-black rounded-md xs:rounded-lg sm:rounded-xl p-1.5 xs:p-2 sm:p-3 shadow-lg hover:scale-110 hover:rotate-6 transition-all duration-300 cursor-pointer touch-manipulation">
+              <Gamepad2 className="w-3.5 h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
             </div>
           </div>
 
           {/* Heading */}
-          <div className="text-center space-y-1.5 sm:space-y-2 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-display text-gray-900 tracking-wide">
+          <div className="text-center space-y-1 xs:space-y-1.5 sm:space-y-2 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
+            <h1 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-display text-gray-900 tracking-wide">
               Sign in with email
             </h1>
-            <p className="text-gray-600 text-xs sm:text-sm leading-relaxed px-1 sm:px-2 md:px-0">
+            <p className="text-gray-600 text-[11px] xs:text-xs sm:text-sm leading-relaxed px-1 xs:px-1 sm:px-2 md:px-0">
               Catch falling ALGO coins and climb the leaderboard. Play for free and compete with players worldwide.
             </p>
           </div>
 
           {loginState === "success" && wallet ? (
-            <div className="text-center space-y-5 md:space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="text-center space-y-4 xs:space-y-5 md:space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <div className="flex justify-center">
                 <div className="relative">
-                  <CheckCircle2 className="w-14 h-14 md:w-16 md:h-16 text-green-600 mx-auto animate-in zoom-in duration-300" />
+                  <CheckCircle2 className="w-12 h-12 xs:w-14 xs:h-14 md:w-16 md:h-16 text-green-600 mx-auto animate-in zoom-in duration-300" />
                   <div className="absolute inset-0 bg-green-600/20 rounded-full animate-ping" />
                 </div>
               </div>
-              <div className="space-y-2">
-                <p className="text-xl md:text-2xl font-bold text-gray-900">
+              <div className="space-y-1.5 xs:space-y-2">
+                <p className="text-lg xs:text-xl md:text-2xl font-bold text-gray-900">
                   Welcome! 🎮
                 </p>
-                <p className="text-gray-600 text-xs md:text-sm">
+                <p className="text-gray-600 text-[11px] xs:text-xs md:text-sm">
                   Your wallet is ready to play
                 </p>
               </div>
 
-              <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 md:p-5 space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-wider text-gray-600">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg xs:rounded-xl p-3 xs:p-4 md:p-5 space-y-1.5 xs:space-y-2">
+                <p className="text-[10px] xs:text-xs font-semibold uppercase tracking-wider text-gray-600">
                   Your Algorand Wallet:
                 </p>
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 bg-white rounded-lg p-3 border border-gray-200">
-                  <p className="font-mono text-xs break-all text-gray-900 flex-1 text-left sm:text-center">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-1.5 xs:gap-2 bg-white rounded-md xs:rounded-lg p-2 xs:p-3 border border-gray-200">
+                  <p className="font-mono text-[10px] xs:text-xs break-all text-gray-900 flex-1 text-left sm:text-center">
                     {wallet}
                   </p>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="shrink-0 h-7 px-3 text-xs hover:bg-gray-100 transition-colors"
+                    className="shrink-0 h-6 xs:h-7 px-2 xs:px-3 text-[10px] xs:text-xs hover:bg-gray-100 transition-colors touch-manipulation"
                     onClick={() => {
                       navigator.clipboard.writeText(wallet);
                     }}
@@ -165,9 +165,9 @@ export default function Login() {
             <>
 
               {/* Email Input */}
-              <div className="space-y-3 sm:space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-700">
+              <div className="space-y-2.5 xs:space-y-3 sm:space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-700">
                 <div className="relative group">
-                  <Mail className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-4 md:w-5 md:h-5 text-gray-400 pointer-events-none group-focus-within:text-gray-600 transition-colors" />
+                  <Mail className="absolute left-2.5 xs:left-3 sm:left-4 top-1/2 -translate-y-1/2 w-3.5 h-3.5 xs:w-4 xs:h-4 sm:w-4 md:w-5 md:h-5 text-gray-400 pointer-events-none group-focus-within:text-gray-600 transition-colors" />
                   <Input
                     type="email"
                     placeholder="Email"
@@ -175,13 +175,13 @@ export default function Login() {
                     onChange={(e) => setEmail(e.target.value)}
                     onKeyDown={handleKeyDown}
                     disabled={loginState === "loading"}
-                    className="pl-10 sm:pl-11 md:pl-12 h-10 sm:h-11 md:h-12 rounded-lg sm:rounded-xl bg-gray-50 border-gray-200 focus:bg-white focus:border-gray-300 focus:ring-2 focus:ring-gray-200 transition-all text-sm sm:text-sm md:text-base"
+                    className="pl-9 xs:pl-10 sm:pl-11 md:pl-12 h-9 xs:h-10 sm:h-11 md:h-12 rounded-md xs:rounded-lg sm:rounded-xl bg-gray-50 border-gray-200 focus:bg-white focus:border-gray-300 focus:ring-2 focus:ring-gray-200 transition-all text-xs xs:text-sm sm:text-sm md:text-base touch-manipulation"
                   />
                 </div>
 
                 {error && (
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-3 animate-in slide-in-from-top-1 duration-300 shake">
-                    <p className="text-xs md:text-sm text-red-700 font-medium">
+                  <div className="bg-red-50 border border-red-200 rounded-md xs:rounded-lg p-2 xs:p-2.5 sm:p-3 animate-in slide-in-from-top-1 duration-300 shake">
+                    <p className="text-xs xs:text-xs md:text-sm text-red-700 font-medium">
                       {error}
                     </p>
                   </div>
@@ -190,12 +190,12 @@ export default function Login() {
                 <Button
                   onClick={handleLogin}
                   disabled={loginState === "loading" || !email.trim()}
-                  className="w-full rounded-lg sm:rounded-xl bg-gray-900 text-white h-10 sm:h-11 md:h-12 text-xs sm:text-sm md:text-base font-semibold hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+                  className="w-full rounded-md xs:rounded-lg sm:rounded-xl bg-gray-900 text-white h-9 xs:h-10 sm:h-11 md:h-12 text-xs xs:text-xs sm:text-sm md:text-base font-semibold hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl touch-manipulation min-h-[44px]"
                 >
                   {loginState === "loading" ? (
                     <>
-                      <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 animate-spin mr-1.5 sm:mr-2" />
-                      <span className="text-xs sm:text-xs md:text-base">Sending…</span>
+                      <Loader2 className="w-3 h-3 xs:w-3 xs:h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 animate-spin mr-1 xs:mr-1.5 sm:mr-2" />
+                      <span className="text-xs xs:text-xs sm:text-xs md:text-base">Sending…</span>
                     </>
                   ) : (
                     "Get Started"
@@ -204,9 +204,9 @@ export default function Login() {
               </div>
 
               {/* Divider */}
-              <div className="flex items-center gap-2 sm:gap-3 animate-in fade-in duration-700 delay-900">
+              <div className="flex items-center gap-1.5 xs:gap-2 sm:gap-3 animate-in fade-in duration-700 delay-900">
                 <div className="flex-1 h-px bg-gray-200" />
-                <span className="text-xs sm:text-xs md:text-sm text-gray-500">Or sign in with</span>
+                <span className="text-[10px] xs:text-xs sm:text-xs md:text-sm text-gray-500">Or sign in with</span>
                 <div className="flex-1 h-px bg-gray-200" />
               </div>
 
@@ -215,9 +215,9 @@ export default function Login() {
                 onClick={handleGoogleLogin}
                 disabled={loginState === "loading"}
                 variant="outline"
-                className="w-full rounded-lg sm:rounded-xl h-10 sm:h-11 md:h-12 border border-gray-200 hover:border-gray-300 hover:bg-gray-50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-xs sm:text-sm md:text-base font-medium disabled:opacity-50 disabled:cursor-not-allowed bg-white shadow-sm hover:shadow-md animate-in fade-in slide-in-from-bottom-4 duration-700 delay-1000"
+                className="w-full rounded-md xs:rounded-lg sm:rounded-xl h-9 xs:h-10 sm:h-11 md:h-12 border border-gray-200 hover:border-gray-300 hover:bg-gray-50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-xs xs:text-xs sm:text-sm md:text-base font-medium disabled:opacity-50 disabled:cursor-not-allowed bg-white shadow-sm hover:shadow-md animate-in fade-in slide-in-from-bottom-4 duration-700 delay-1000 touch-manipulation min-h-[44px]"
               >
-                <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 mr-1.5 sm:mr-2" viewBox="0 0 24 24" fill="none">
+                <svg className="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 mr-1 xs:mr-1.5 sm:mr-2" viewBox="0 0 24 24" fill="none">
                   <path
                     d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
                     fill="#4285F4"
