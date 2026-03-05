@@ -97,24 +97,33 @@ export default function Home() {
             </h1>
           </div>
 
-          {/* Wallet address + Logout */}
-          <div className="flex items-center gap-1 xs:gap-1.5 sm:gap-2 min-w-0">
-            {wallet && (
-              <div className="flex items-center gap-1 xs:gap-1.5 h-7 sm:h-8 bg-gradient-to-r from-black via-gray-900 to-gray-800 text-white rounded-md sm:rounded-lg px-1.5 xs:px-2 sm:px-3 shadow-lg border border-gray-700 min-w-0 flex-shrink">
-                <span className="font-mono text-[10px] xs:text-xs truncate max-w-[56px] xs:max-w-[90px] sm:max-w-[140px] md:max-w-[180px] bg-black/20 px-1 xs:px-1.5 sm:px-2 py-0.5 rounded select-all">
-                  {wallet.slice(0, 4)}...{wallet.slice(-4)}
-                </span>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="p-0.5 border border-white/20 rounded hover:bg-white/10 h-[18px] w-[18px] xs:h-5 xs:w-5 sm:h-6 sm:w-6 shrink-0 touch-manipulation"
-                  onClick={() => navigator.clipboard.writeText(wallet)}
-                  title="Copy wallet address"
-                >
-                  <Copy className="w-2 h-2 xs:w-2.5 xs:h-2.5 sm:w-3 sm:h-3" />
-                </Button>
-              </div>
-            )}
+          {/* Wallet address + Logout — always occupy the same height to avoid layout shift */}
+          <div className="flex items-center gap-1 xs:gap-1.5 sm:gap-2 flex-shrink-0">
+            {/* Wallet: shown once loaded, invisible skeleton beforehand to hold space */}
+            <div
+              className={`flex items-center gap-1 xs:gap-1.5 h-7 sm:h-8 rounded-md sm:rounded-lg px-1.5 xs:px-2 sm:px-3 border flex-shrink-0 transition-opacity duration-200 ${
+                wallet
+                  ? "bg-gradient-to-r from-black via-gray-900 to-gray-800 text-white shadow-lg border-gray-700 opacity-100"
+                  : "opacity-0 pointer-events-none border-transparent w-[80px] xs:w-[110px] sm:w-[160px]"
+              }`}
+            >
+              {wallet && (
+                <>
+                  <span className="font-mono text-[10px] xs:text-xs truncate max-w-[56px] xs:max-w-[90px] sm:max-w-[140px] md:max-w-[180px] bg-black/20 px-1 xs:px-1.5 sm:px-2 py-0.5 rounded select-all">
+                    {wallet.slice(0, 4)}...{wallet.slice(-4)}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="p-0.5 border border-white/20 rounded hover:bg-white/10 h-[18px] w-[18px] xs:h-5 xs:w-5 sm:h-6 sm:w-6 shrink-0 touch-manipulation"
+                    onClick={() => navigator.clipboard.writeText(wallet)}
+                    title="Copy wallet address"
+                  >
+                    <Copy className="w-2 h-2 xs:w-2.5 xs:h-2.5 sm:w-3 sm:h-3" />
+                  </Button>
+                </>
+              )}
+            </div>
 
             <Button
               variant="outline"

@@ -18,13 +18,25 @@ export function Leaderboard({ currentWallet }: LeaderboardProps) {
   const { data: scores, isLoading, isError } = useScores();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const currentUserRef = useRef<HTMLDivElement>(null);
+  const hasAutoScrolled = useRef(false);
 
-  // Auto-scroll to current user's row whenever data or wallet changes
+  // Auto-scroll to current user's row ONCE after both scores and wallet are ready.
+  // Uses manual scrollTop so only the leaderboard container scrolls, not the page.
   useEffect(() => {
+    if (hasAutoScrolled.current) return;
     if (!currentUserRef.current || !scrollContainerRef.current) return;
+
+    const container = scrollContainerRef.current;
+    const row = currentUserRef.current;
+
     const timer = setTimeout(() => {
-      currentUserRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
-    }, 150);
+      const rowTop = row.offsetTop;
+      const rowHeight = row.offsetHeight;
+      const containerHeight = container.clientHeight;
+      container.scrollTop = rowTop - containerHeight / 2 + rowHeight / 2;
+      hasAutoScrolled.current = true;
+    }, 200);
+
     return () => clearTimeout(timer);
   }, [scores, currentWallet]);
 
