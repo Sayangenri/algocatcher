@@ -88,41 +88,39 @@ export default function Home() {
   return (
     <div className="h-screen bg-background font-body flex flex-col overflow-hidden safe-area-inset">
       <div className="flex-1 max-w-6xl mx-auto w-full px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 pt-2 xs:pt-2.5 sm:pt-3 md:pt-4 pb-2 xs:pb-2.5 sm:pb-3 md:pb-4 flex flex-col min-h-0">
-        {/* Header bar with title, wallet, and logout */}
-        <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-1.5 xs:gap-2 sm:gap-3 md:gap-4 mb-2 xs:mb-2.5 sm:mb-3 md:mb-4 flex-shrink-0 w-full">
+        {/* Header bar — single row on all screen sizes */}
+        <div className="flex items-center justify-between gap-2 sm:gap-3 mb-2 sm:mb-3 md:mb-4 flex-shrink-0 w-full">
           {/* ALGO Catcher Title */}
-          <div className="flex items-center w-full xs:w-auto justify-center xs:justify-start">
-            <div className="inline-flex items-center justify-center gap-1.5 sm:gap-2 bg-white px-2.5 xs:px-3 sm:px-4 sm:py-1.5 md:px-6 md:py-2 rounded-full shadow-[3px_3px_0px_0px_#000] sm:shadow-[4px_4px_0px_0px_#000] border-2 border-black">
-              <h1 className="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl font-display tracking-wider whitespace-nowrap">
-                ALGO Catcher
-              </h1>
-            </div>
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-white px-2.5 sm:px-4 sm:py-1.5 md:px-6 md:py-2 rounded-full shadow-[3px_3px_0px_0px_#000] sm:shadow-[4px_4px_0px_0px_#000] border-2 border-black flex-shrink-0">
+            <h1 className="text-sm xs:text-base sm:text-xl md:text-2xl lg:text-3xl font-display tracking-wider whitespace-nowrap">
+              ALGO Catcher
+            </h1>
           </div>
-          
-          {/* Wallet address and Logout side by side */}
-          <div className="flex items-center gap-1 xs:gap-1.5 sm:gap-2 w-full xs:w-auto justify-end">
-            {/* Wallet banner */}
+
+          {/* Wallet address + Logout */}
+          <div className="flex items-center gap-1 xs:gap-1.5 sm:gap-2 min-w-0">
             {wallet && (
-              <div className="flex items-center gap-1 xs:gap-1.5 sm:gap-2 bg-gradient-to-r from-black via-gray-900 to-gray-800 text-white rounded-md sm:rounded-lg px-1.5 xs:px-2 sm:px-3 py-0.5 xs:py-1 sm:py-1.5 shadow-lg border border-gray-700">
-                <span className="font-mono text-[10px] xs:text-xs truncate max-w-[80px] xs:max-w-[100px] sm:max-w-[140px] md:max-w-[180px] bg-black/20 px-1 xs:px-1.5 sm:px-2 py-0.5 rounded select-all">
-                  {wallet.slice(0, 6)}...{wallet.slice(-4)}
+              <div className="flex items-center gap-1 xs:gap-1.5 h-7 sm:h-8 bg-gradient-to-r from-black via-gray-900 to-gray-800 text-white rounded-md sm:rounded-lg px-1.5 xs:px-2 sm:px-3 shadow-lg border border-gray-700 min-w-0 flex-shrink">
+                <span className="font-mono text-[10px] xs:text-xs truncate max-w-[56px] xs:max-w-[90px] sm:max-w-[140px] md:max-w-[180px] bg-black/20 px-1 xs:px-1.5 sm:px-2 py-0.5 rounded select-all">
+                  {wallet.slice(0, 4)}...{wallet.slice(-4)}
                 </span>
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-0.5 xs:p-0.5 sm:p-1 border border-white/20 rounded hover:bg-white/10 h-[18px] w-[18px] xs:h-5 xs:w-5 sm:h-6 sm:w-6 shrink-0 touch-manipulation"
-                  onClick={() => {
-                    navigator.clipboard.writeText(wallet);
-                  }}
+                  className="p-0.5 border border-white/20 rounded hover:bg-white/10 h-[18px] w-[18px] xs:h-5 xs:w-5 sm:h-6 sm:w-6 shrink-0 touch-manipulation"
+                  onClick={() => navigator.clipboard.writeText(wallet)}
                   title="Copy wallet address"
                 >
                   <Copy className="w-2 h-2 xs:w-2.5 xs:h-2.5 sm:w-3 sm:h-3" />
                 </Button>
               </div>
             )}
-            
-            {/* Logout button */}
-            <Button variant="outline" onClick={handleLogout} className="h-6 xs:h-7 sm:h-8 text-[10px] xs:text-xs px-1.5 xs:px-2 sm:px-3 whitespace-nowrap shrink-0 touch-manipulation">
+
+            <Button
+              variant="outline"
+              onClick={handleLogout}
+              className="h-7 sm:h-8 text-[10px] xs:text-xs px-1.5 xs:px-2 sm:px-3 whitespace-nowrap shrink-0 touch-manipulation"
+            >
               Logout
             </Button>
           </div>
@@ -186,7 +184,7 @@ export default function Home() {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-5 xl:col-span-5 h-[50vh] xs:h-[45vh] sm:h-[40vh] md:h-[35vh] lg:h-[70vh] xl:h-full overflow-hidden flex flex-col">
+          <div className="lg:col-span-5 xl:col-span-5 h-[42vh] xs:h-[42vh] sm:h-[40vh] md:h-[40vh] lg:h-full xl:h-full flex flex-col min-h-0">
             <Leaderboard currentWallet={wallet} />
           </div>
 
