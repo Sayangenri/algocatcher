@@ -3,9 +3,9 @@ import { scores, type Score } from "@shared/schema";
 import { desc, eq } from "drizzle-orm";
 
 export class DatabaseStorage {
-  async getTopScores(): Promise<Score[]> {
-    return db.select().from(scores).orderBy(desc(scores.score)).limit(10);
-  }
+async getTopScores(): Promise<Score[]> {
+  return db.select().from(scores).orderBy(desc(scores.score));
+}
 
   async createOrUpdateScore(wallet: string, newScore: number): Promise<Score> {
     const existing = await db
